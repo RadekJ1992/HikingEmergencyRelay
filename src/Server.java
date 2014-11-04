@@ -47,8 +47,10 @@ public class Server {
         public void run() {
             try {
                 boolean isServer;
+                System.out.println("Creating buffered reader");
                 in = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
+                System.out.println("Creating buffered writer");
                 out = new PrintWriter(socket.getOutputStream(), true);
 
                 while (true) {
@@ -56,7 +58,7 @@ public class Server {
                     name = in.readLine();
                     System.out.println(name);
                     if (name == null) {
-                        return;
+                        continue;
                     }
                     synchronized (clients) {
                         if (!name.contains("server") && !clients.contains(name)) {
@@ -76,15 +78,18 @@ public class Server {
                     }
                 }
                 if (isServer) {
+                    System.out.println("Adding Server Writer");
                     serverWriters.add(out);
                 } else {
+                    System.out.println("Adding Client Writer");
                     writers.add(out);
                 }
+                System.out.println("Waiting for " + name + " messages");
                 
                 while (true) {
                     String input = in.readLine();
                     if (input == null) {
-                        return;
+                        continue;
                     }
                     for (PrintWriter writer : serverWriters) {
                         System.out.println("Message from " + name + ": " + input);
