@@ -47,6 +47,13 @@ public class ServerDispatcher implements Runnable
         notify();
     }
 
+    public synchronized void dispatchMessage(String aMessage)
+    {
+        messages.add(aMessage);
+        notify();
+    }
+
+
     private synchronized String getNextMessageFromQueue()
             throws InterruptedException
     {

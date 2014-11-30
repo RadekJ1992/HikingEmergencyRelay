@@ -19,7 +19,7 @@ public class RelayClientListener extends Thread
         this.relayClientInfo = relayClientInfo;
         this.serverDispatcher = serverDispatcher;
         Socket socket = relayClientInfo.socket;
-        System.out.println("Listener Created for IP " + this.relayClientInfo.socket.getInetAddress());
+        System.out.println("Listener Created for IP " + socket.getInetAddress());
         bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 

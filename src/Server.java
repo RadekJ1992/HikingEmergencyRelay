@@ -16,6 +16,7 @@ public class Server {
         // Open server socket for listening
         ServerSocket serverSocketForClients = null;
         ServerSocket serverSocketForServers = null;
+        UDPListener udpListener = null;
         try {
             serverSocketForClients = new ServerSocket(CLIENTS_PORT);
             serverSocketForServers = new ServerSocket(SERVERS_PORT);
@@ -37,8 +38,12 @@ public class Server {
         Handler handlerForServers = new Handler(serverSocketForServers, serverDispatcher, true);
         Thread serversHandlerThread = new Thread(handlerForServers);
 
+        udpListener = new UDPListener(serverDispatcher);
+        Thread udpListenerThread = new Thread(udpListener);
+
         clientsHandlerThread.start();
         serversHandlerThread.start();
+        udpListenerThread.start();
 
     }
 

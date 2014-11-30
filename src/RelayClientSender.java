@@ -22,7 +22,7 @@ public class RelayClientSender extends Thread
         this.relayClientInfo = relayClientInfo;
         this.serverDispatcher = serverDispatcher;
         Socket socket = relayClientInfo.socket;
-        System.out.println("Sender Created for IP " + this.relayClientInfo.socket.getInetAddress());
+        System.out.println("Sender Created for IP " + relayClientInfo.socket.getInetAddress());
         printWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
     }
 
