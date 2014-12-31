@@ -87,11 +87,13 @@ public class ServerDispatcher implements Runnable
         System.out.println("Server Dispatcher started");
         try {
             while (true) {
-                String message = getNextMessageFromQueue();
-                if (message != null) {
-                    sendMessageToAllServers(message);
+                if (!servers.isEmpty()) {
+                    String message = getNextMessageFromQueue();
+                    if (message != null) {
+                        sendMessageToAllServers(message);
+                    }
+                    Thread.sleep(200);
                 }
-                Thread.sleep(200);
             }
         } catch (InterruptedException ie) {
         }
