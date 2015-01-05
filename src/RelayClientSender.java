@@ -1,6 +1,3 @@
-/**
- * Created by radoslawjarzynka on 05.11.14.
- */
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -8,6 +5,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Vector;
 
+/**
+ * Aplikacja wysyłająca wiadomości do klientów
+ *
+ * Created by radoslawjarzynka on 05.11.14.
+ */
 public class RelayClientSender extends Thread
 {
     private Vector messages = new Vector();
@@ -26,12 +28,21 @@ public class RelayClientSender extends Thread
         printWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
     }
 
+    /**
+     * wysłanie wiadomości
+     * @param aMessage
+     */
     public synchronized void sendMessage(String aMessage)
     {
         messages.add(aMessage);
         notify();
     }
 
+    /**
+     * Pobranie pierwszego elementu z listy wiadomości
+     * @return
+     * @throws InterruptedException
+     */
     private synchronized String getNextMessageFromQueue() throws InterruptedException
     {
         while (messages.size()==0) {
@@ -42,6 +53,10 @@ public class RelayClientSender extends Thread
         return message;
     }
 
+    /**
+     * wysłanie wiadomości
+     * @param aMessage
+     */
     private void sendMessageToClient(String aMessage)
     {
         printWriter.println(aMessage);

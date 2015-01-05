@@ -3,11 +3,16 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 /**
+ * Klasa odbierająca przychodzące datagramy UDP
+ *
  * Created by radoslawjarzynka on 30.11.14.
  */
 public class UDPListener implements Runnable {
 
-    public static final int UDP_PORT = 8001;
+    //port, na którym nasłuchuje aplikacja
+    public static final int UDP_PORT = 9001;
+
+    //rozmiar pakietu
     private final static int PACKET_SIZE = 1024 ;
     private ServerDispatcher serverDispatcher;
 

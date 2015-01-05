@@ -7,11 +7,17 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Główna klasa aplikacji przekaźnika
+ */
 public class Server {
 
     public static final int CLIENTS_PORT = 9000;
     public static final int SERVERS_PORT = 8000;
 
+    /**
+     * Rozpoczęcie pracy serwera
+     */
     public void StartServer() {
         // Open server socket for listening
         ServerSocket serverSocketForClients = null;
@@ -48,7 +54,7 @@ public class Server {
     }
 
     /**
-     * Entry point
+     * punkt wejścia aplikacji
      * @param args
      */
     public static void main(String[] args) {
@@ -57,7 +63,7 @@ public class Server {
     }
 
     /**
-     * Inner class designed to handle connections
+     * Wewnętrzna klasa obsługująca klientów przekaźnika
      */
     private class Handler implements Runnable {
 

@@ -1,12 +1,12 @@
-/**
- * Created by radoslawjarzynka on 05.11.14.
- */
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * Klasa odbierająca wiadomości od klientów
+ * Created by radoslawjarzynka on 05.11.14.
+ */
 public class RelayClientListener extends Thread
 {
     private ServerDispatcher serverDispatcher;
